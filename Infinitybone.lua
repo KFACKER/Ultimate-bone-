@@ -1,21 +1,21 @@
--- Script Loadstring cho Dead Rails: Infinite Bone
+-- Script Loadstring cho Dead Rails: Infinite Bonds
 local player = game.Players.LocalPlayer
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 -- Tạo RemoteEvent nếu chưa có
 if not ReplicatedStorage:FindFirstChild("InfiniteBoneEvent") then
-    local infiniteBoneEvent = Instance.new("RemoteEvent")
-    infiniteBoneEvent.Name = "InfiniteBoneEvent"
-    infiniteBoneEvent.Parent = ReplicatedStorage
+    local infiniteBondsEvent = Instance.new("RemoteEvent")
+    infiniteBondsEvent.Name = "InfiniteBondsEvent"
+    infiniteBondsEvent.Parent = ReplicatedStorage
 
     -- Server-side logic (chạy trên server thông qua RemoteEvent)
-    infiniteBoneEvent.OnServerEvent:Connect(function(plr)
+    infiniteBondsEvent.OnServerEvent:Connect(function(plr)
         local leaderstats = plr:FindFirstChild("leaderstats")
         if leaderstats then
-            local bone = leaderstats:FindFirstChild("Bone")
-            if bone then
+            local bonds = leaderstats:FindFirstChild("Bonds")
+            if bonds then
                 while true do
-                    bone.Value = 999999999 -- Đặt Bone thành giá trị vô hạn
+                    bonds.Value = 999999999 -- Đặt Bonds thành giá trị vô hạn
                     wait(0.1)
                 end
             end
@@ -43,39 +43,39 @@ Title.TextColor3 = Color3.fromRGB(255, 255, 255)
 Title.TextScaled = true
 Title.Parent = Frame
 
-local InfiniteBoneButton = Instance.new("TextButton")
-InfiniteBoneButton.Name = "InfiniteBoneButton"
-InfiniteBoneButton.Size = UDim2.new(0.8, 0, 0.15, 0)
-InfiniteBoneButton.Position = UDim2.new(0.1, 0, 0.2, 0)
-InfiniteBoneButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
-InfiniteBoneButton.Text = "Infinite Bone"
-InfiniteBoneButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-InfiniteBoneButton.TextScaled = true
-InfiniteBoneButton.Parent = Frame
+local InfiniteBondsButton = Instance.new("TextButton")
+InfiniteBondsButton.Name = "InfiniteBoneButton"
+InfiniteBondsButton.Size = UDim2.new(0.8, 0, 0.15, 0)
+InfiniteBondsButton.Position = UDim2.new(0.1, 0, 0.2, 0)
+InfiniteBondsButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+InfiniteBondsButton.Text = "Infinite Bone"
+InfiniteBondsButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+InfiniteBondsButton.TextScaled = true
+InfiniteBondsButton.Parent = Frame
 
 -- Xử lý nút Infinite Bone
-InfiniteBoneButton.MouseButton1Click:Connect(function()
-    local infiniteBoneEvent = ReplicatedStorage:WaitForChild("InfiniteBoneEvent")
-    infiniteBoneEvent:FireServer()
+InfiniteBondsButton.MouseButton1Click:Connect(function()
+    local infiniteBondsEvent = ReplicatedStorage:WaitForChild("InfiniteBondsEvent")
+    infiniteBondsEvent:FireServer()
 end)
 
 -- Hiển thị số Bone (tuỳ chọn)
-local BoneLabel = Instance.new("TextLabel")
-BoneLabel.Name = "BoneLabel"
-BoneLabel.Size = UDim2.new(0.8, 0, 0.1, 0)
-BoneLabel.Position = UDim2.new(0.1, 0, 0.4, 0)
-BoneLabel.BackgroundTransparency = 1
-BoneLabel.Text = "Bone: 0"
-BoneLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-BoneLabel.TextScaled = true
-BoneLabel.Parent = Frame
+local BondsLabel = Instance.new("TextLabel")
+BondsLabel.Name = "BoneLabel"
+BondsLabel.Size = UDim2.new(0.8, 0, 0.1, 0)
+BondsLabel.Position = UDim2.new(0.1, 0, 0.4, 0)
+BondsLabel.BackgroundTransparency = 1
+BondsLabel.Text = "Bone: 0"
+BondsLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+BondsLabel.TextScaled = true
+BondsLabel.Parent = Frame
 
 while true do
     local leaderstats = player:FindFirstChild("leaderstats")
     if leaderstats then
-        local bone = leaderstats:FindFirstChild("Bone")
-        if bone then
-            BoneLabel.Text = "Bone: " .. bone.Value
+        local bonds = leaderstats:FindFirstChild("Bonds")
+        if bonds then
+            BondsLabel.Text = "Bonds: " .. bonds.Value
         end
     end
     wait(0.1)
